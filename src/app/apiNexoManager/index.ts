@@ -9,7 +9,7 @@ export class ApiNexoManager {
         sleepTime = 800
     }): Promise<String>{
 
-        const url = process.env.API_URL;
+        const url:string = process.env.API_URL;
         const headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
         };
