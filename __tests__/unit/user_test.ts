@@ -12,6 +12,10 @@ describe('testing entity user', ()=>{
         await AppDataSource.initialize()
     });
 
+    afterAll(async()=>{
+        await AppDataSource.destroy()
+    })
+
     const userMock:IUser = {
         "email":faker.internet.email(),
         "nome":faker.name.firstName(),

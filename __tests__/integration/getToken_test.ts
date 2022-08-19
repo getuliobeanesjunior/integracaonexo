@@ -4,7 +4,7 @@ require('dotenv').config()
 
 describe('testing tokem from api Nexo', ()=>{
 
-    test.skip('it should get token from API NEXO', async ()=>{
+    test('it should get token from API NEXO', async ()=>{
 
         const tokenAPi = await ApiNexoManager.getToken({})
 

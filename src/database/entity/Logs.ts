@@ -8,7 +8,7 @@ class Logs {
     id: string;
 
     @Column()
-    integration_id: string;
+    message: string;
 
     @Column({
         type: "enum",
