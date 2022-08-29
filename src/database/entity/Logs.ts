@@ -10,11 +10,8 @@ class Logs {
     @Column()
     message: string;
 
-    @Column({
-        type: "enum",
-        enum: ApiTypes
-    })
-    integration_type: ApiTypes;
+    @Column()
+    integration_type: string;
 
     @Column()
     integration_success:boolean;
@@ -22,7 +19,7 @@ class Logs {
     @Column()
     sent_json:string;
 
-    @Column('date')
+    @Column()
     created_at:Date;
 
 }

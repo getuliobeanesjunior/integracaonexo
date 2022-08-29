@@ -19,7 +19,7 @@ class ForkyInstance {
   exec = (func: Function) => {
     process.on('message', (opts: any) => {
       func(opts)
-        .then((response: any) => process.send(response))
+        .then((response: any) => process.send('message', response))
         .catch(this.catch);
     });
   };

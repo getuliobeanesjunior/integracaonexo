@@ -3,7 +3,9 @@ import axios from 'axios';
 import { ApiTypes } from '../../utils/enumApiTypes';
 import { sleep } from '../../utils/sleep';
 import logs from '../application/logs';
+import IEmployess from '../Interfaces/IEmployess';
 import ILogs from '../Interfaces/ILogs';
+import ISector from '../Interfaces/ISector';
 import ITurno from '../Interfaces/ITurno';
 
 export class ApiNexoManager {
@@ -28,7 +30,7 @@ export class ApiNexoManager {
 
         try{
 
-            const {data} = await axios.post(`${url}NexoAPIRest/token`, body, {headers});
+            const {data} = await axios.post(`${url}token`, body, {headers});
 
             return data.access_token;
 
@@ -83,6 +85,78 @@ export class ApiNexoManager {
             }
         }
 
+    }
+
+    public async sendNewsEmployees( employees: Array<IEmployess> ){
+        const url:string = process.env.API_URL;
+        const token:String = await ApiNexoManager.getToken({});
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+        for(const employee of employees){
+            try{
+                const result = await axios.post(`${url}api/Funcionario`, {...employee}, {headers}); 
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_success: true,
+                    sent_json: JSON.stringify({...result}),
+                    message: "INTEGRAÇÃO REALIZADA COM SUCESSO"
+                }
+                await logs.createLog(log)
+            }catch(err){
+                let message
+                if(err.response && err.response.data){
+                    message = JSON.stringify(err.response.data)
+                }else{
+                    message = "Erro não retornado na API"
+                }
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_success: false,
+                    sent_json: JSON.stringify({...employee}),
+                    message: err.response.data.value || "Erro não retornado na API"
+                }
+    
+                await logs.createLog(log)
+            }
+        }
+    }
+
+    public async sendNewsSectors( sectors: Array<ISector> ){
+        const url:string = process.env.API_URL;
+        const token:String = await ApiNexoManager.getToken({});
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+        for(const sector of sectors){
+            try{
+                const {data} = await axios.post(`${url}api/Setor`, {...sector}, {headers}); 
+                console.log(data)
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_SETOR,
+                    integration_success: true,
+                    sent_json: JSON.stringify({...data}),
+                    message: "INTEGRAÇÃO REALIZADA COM SUCESSO"
+                }
+                await logs.createLog(log)
+            }catch(err){
+                let message
+                if(err.response && err.response.data){
+                    message = JSON.stringify(err.response.data)
+                }else{
+                    message = "Erro não retornado na API"
+                }
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_SETOR,
+                    integration_success: false,
+                    sent_json: JSON.stringify({...sector}),
+                    message 
+                }    
+                await logs.createLog(log)
+            }
+        }
     }
 
 }

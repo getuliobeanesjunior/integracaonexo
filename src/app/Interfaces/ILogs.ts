@@ -5,4 +5,5 @@ export default interface ILogs{
     integration_success: boolean,
     sent_json: string,
     message: string,
+    created_at?:Date,
 }

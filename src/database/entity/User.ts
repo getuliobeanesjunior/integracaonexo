@@ -19,10 +19,10 @@ class User {
     @Column()
     password:string;
 
-    @Column('date')
+    @Column()
     created_at:Date;
 
-    @Column('date')
+    @Column()
     updated_at:Date;
 
     @BeforeInsert()

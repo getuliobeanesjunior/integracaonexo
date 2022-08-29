@@ -6,6 +6,6 @@ const router = Router({ mergeParams: true });
 router.use('/authenticate', require('./authenticate'))
 router.use('/users/create', require('./userCreate'))
 router.use('/users', authMiddleware, require('./user'))
-router.use('/workers', authMiddleware, require('./workers'))
+router.use('/workers', require('./workers'))
 
 export default router;

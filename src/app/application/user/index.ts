@@ -1,5 +1,5 @@
 
-import { AppDataSource } from "../../../database/data-source";
+import { AppDataSource } from "../../../database/data-source-sqlite";
 import IUser from "../../Interfaces/IUser";
 import User from "../../../database/entity/User";
 
@@ -12,6 +12,10 @@ export default {
         if(userExists){
             throw 'Email já cadastrado na base de dados'
         }
+
+        IUser.created_at = new Date();
+        IUser.updated_at = new Date();
+
         const user = repository.create({ ...IUser })
 
         await repository.save(user)
