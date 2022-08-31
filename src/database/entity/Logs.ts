@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
-import { ApiTypes } from "../../utils/enumApiTypes";
 
 @Entity('integration_logs')
 class Logs {

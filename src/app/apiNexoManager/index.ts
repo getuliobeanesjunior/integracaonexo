@@ -1,10 +1,13 @@
 require('dotenv').config()
 import axios from 'axios';
+import { Logger } from 'winston';
 import { ApiTypes } from '../../utils/enumApiTypes';
 import { sleep } from '../../utils/sleep';
 import logs from '../application/logs';
+import ICompany from '../Interfaces/ICompany';
 import IEmployess from '../Interfaces/IEmployess';
 import ILogs from '../Interfaces/ILogs';
+import IOffice from '../Interfaces/IOffice';
 import ISector from '../Interfaces/ISector';
 import ITurno from '../Interfaces/ITurno';
 
@@ -84,29 +87,36 @@ export class ApiNexoManager {
                 throw new Error(err)
             }
         }
-
     }
 
-    public async sendNewsEmployees( employees: Array<IEmployess> ){
+    public async sendNewsEmployees( employees: Array<IEmployess>, logger: Logger){
+        await logs.deleteLogByType(ApiTypes.API_FUNCIONARIO);
         const url:string = process.env.API_URL;
         const token:String = await ApiNexoManager.getToken({});
         const headers = {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         };
+        let funcionarioAtual = 1;
+        let success = 0;
+        let error = 0;
         for(const employee of employees){
+            logger.info(`Integrando funcionário ${funcionarioAtual} de ${employees.length}`)
+            funcionarioAtual++;
             try{
-                const result = await axios.post(`${url}api/Funcionario`, {...employee}, {headers}); 
+                const {data} = await axios.post(`${url}api/Funcionario`, {...employee}, {headers}); 
                 const log:ILogs = {
                     integration_type: ApiTypes.API_FUNCIONARIO,
                     integration_success: true,
-                    sent_json: JSON.stringify({...result}),
+                    sent_json: JSON.stringify({...data}),
                     message: "INTEGRAÇÃO REALIZADA COM SUCESSO"
                 }
                 await logs.createLog(log)
+                success++;
             }catch(err){
                 let message
                 if(err.response && err.response.data){
+                    console.log(`Error ao integrar funcionário => ${JSON.stringify(err.response.data)}`)
                     message = JSON.stringify(err.response.data)
                 }else{
                     message = "Erro não retornado na API"
@@ -115,22 +125,29 @@ export class ApiNexoManager {
                     integration_type: ApiTypes.API_FUNCIONARIO,
                     integration_success: false,
                     sent_json: JSON.stringify({...employee}),
-                    message: err.response.data.value || "Erro não retornado na API"
+                    message
                 }
     
                 await logs.createLog(log)
+                error++;
             }
         }
+        logger.info(`Integrado ${success} funcionários com sucesso e ${error} falhas na integração.`)
     }
 
-    public async sendNewsSectors( sectors: Array<ISector> ){
+    public async sendNewsSectors( sectors: Array<ISector>, logger: Logger ){
+        await logs.deleteLogByType(ApiTypes.API_SETOR);
         const url:string = process.env.API_URL;
         const token:String = await ApiNexoManager.getToken({});
         const headers = {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         };
+        let setorAtual = 1;
+        let success = 0;
+        let error = 0;
         for(const sector of sectors){
+            logger.info(`Integrando setor ${setorAtual} de ${sectors.length}`)
             try{
                 const {data} = await axios.post(`${url}api/Setor`, {...sector}, {headers}); 
                 console.log(data)
@@ -141,6 +158,7 @@ export class ApiNexoManager {
                     message: "INTEGRAÇÃO REALIZADA COM SUCESSO"
                 }
                 await logs.createLog(log)
+                success++;
             }catch(err){
                 let message
                 if(err.response && err.response.data){
@@ -155,8 +173,98 @@ export class ApiNexoManager {
                     message 
                 }    
                 await logs.createLog(log)
+                error++;
             }
         }
+        logger.info(`Integrado ${success} setores com sucesso e ${error} falhas na integração.`)
+    }
+
+    public async sendNewsCompanies( companies: Array<ICompany>, logger: Logger){
+        await logs.deleteLogByType(ApiTypes.API_EMPRESA);
+        const url:string = process.env.API_URL;
+        const token:String = await ApiNexoManager.getToken({});
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+        let empresaAtual = 1;
+        let success = 0;
+        let error = 0;
+        for(const company of companies){
+            logger.info(`Integrando empresa ${empresaAtual} de ${companies.length}`)
+            empresaAtual++;
+            try{
+                const {data} = await axios.post(`${url}api/Empresa`, {...company}, {headers}); 
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_EMPRESA,
+                    integration_success: true,
+                    sent_json: JSON.stringify({...data}),
+                    message: "INTEGRAÇÃO REALIZADA COM SUCESSO"
+                }
+                await logs.createLog(log)
+                success++;
+            }catch(err){
+                let message
+                if(err.response && err.response.data){
+                    message = JSON.stringify(err.response.data)
+                }else{
+                    message = "Erro não retornado na API"
+                }
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_EMPRESA,
+                    integration_success: false,
+                    sent_json: JSON.stringify({...company}),
+                    message 
+                }    
+                await logs.createLog(log)
+                error++
+            }
+        }
+        logger.info(`Integrado ${success} empresas com sucesso e ${error} falhas na integração.`)
+    }
+
+    public async sendNewsOffices( offices: Array<IOffice>, logger: Logger){
+        await logs.deleteLogByType(ApiTypes.API_CARGO);
+        const url:string = process.env.API_URL;
+        const token:String = await ApiNexoManager.getToken({});
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+        let cargoAtual = 1;
+        let success = 0;
+        let error = 0;
+        for(const office of offices){
+            logger.info(`Integrando cargo ${cargoAtual} de ${offices.length}`)
+            cargoAtual++;
+            try{
+                const {data} = await axios.post(`${url}api/Cargo`, {...office}, {headers}); 
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_CARGO,
+                    integration_success: true,
+                    sent_json: JSON.stringify({...data}),
+                    message: "INTEGRAÇÃO REALIZADA COM SUCESSO"
+                }
+                await logs.createLog(log)
+                success++;
+            }catch(err){
+                let message
+                if(err.response && err.response.data){
+                    message = JSON.stringify(err.response.data)
+                }else{
+                    message = "Erro não retornado na API"
+                }
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_CARGO,
+                    integration_success: false,
+                    sent_json: JSON.stringify({...office}),
+                    message 
+                }    
+                await logs.createLog(log)
+                error++;
+            }
+        }
+        logger.info(`Integrado ${ success } cargos com sucesso e ${error} falhas na integração.`)
     }
 
 }

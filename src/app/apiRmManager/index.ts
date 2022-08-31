@@ -3,6 +3,8 @@ import moment from "moment";
 import {parseStringPromise} from "xml2js"
 import sanitizeEmployees from "./sanitizeEmployees";
 import sanitizeSector from "./sanitizeSector";
+import sanitizeCompany from "./sanitizeCompany";
+import sanitizeOffice from "./sanitizeOffice";
 var soap = require('soap')
 
 export default class ApiRmManager {
@@ -68,6 +70,52 @@ export default class ApiRmManager {
         const sectors = await parseStringPromise(resulSql[0].RealizarConsultaSQLResult)
 
         return sanitizeSector(sectors.NewDataSet.Resultado);
+    }
+
+    public async getNewCompany(){
+        const codSentenca = "API.NEXO.00004";
+        const codColigada = 0;
+        const codSistema = "P";
+        const parameters = "";
+        const context = "CODUSUARIO=aldemir.trevox;CODSISTEMA=P;CODCOLIGADA=0";
+
+        const args = {
+            codSentenca,
+            codColigada,
+            codSistema,
+            parameters,
+            context
+        }
+
+        const client    = await this.createClient();
+        const resulSql = await client.RealizarConsultaSQLAsync(args);
+
+        const sectors = await parseStringPromise(resulSql[0].RealizarConsultaSQLResult)
+
+        return sanitizeCompany(sectors.NewDataSet.Resultado);
+    }
+
+    public async getNewOffice(){
+        const codSentenca = "API.NEXO.00005";
+        const codColigada = 0;
+        const codSistema = "P";
+        const parameters = "";
+        const context = "CODUSUARIO=aldemir.trevox;CODSISTEMA=P;CODCOLIGADA=0";
+
+        const args = {
+            codSentenca,
+            codColigada,
+            codSistema,
+            parameters,
+            context
+        }
+
+        const client    = await this.createClient();
+        const resulSql = await client.RealizarConsultaSQLAsync(args);
+
+        const sectors = await parseStringPromise(resulSql[0].RealizarConsultaSQLResult)
+
+        return sanitizeOffice(sectors.NewDataSet.Resultado);
     }
 
     async createClient(){

@@ -1,10 +1,10 @@
 // utils
 import forkyBase from '../../../../utils/forky';
 
-const turnoStart = (module.exports = {
+const funcionarioStart = (module.exports = {
   run(opts = {}, cb = () => {}) {
     forkyBase.fork('\\workers\\Funcionario\\worker.ts', opts, cb);
   },
 });
 
-export default turnoStart;
+export default funcionarioStart;
