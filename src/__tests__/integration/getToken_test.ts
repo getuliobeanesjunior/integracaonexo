@@ -1,4 +1,4 @@
-import { ApiNexoManager } from "../../src/app/apiNexoManager"
+import { ApiNexoManager } from "../../app/apiNexoManager"
 
 require('dotenv').config()
 

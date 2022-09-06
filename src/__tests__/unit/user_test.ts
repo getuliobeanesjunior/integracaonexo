@@ -1,10 +1,10 @@
 require('dotenv').config()
 import "reflect-metadata"
-import { AppDataSource } from "../../src/database/data-source"
+import { AppDataSource } from "../../database/data-source"
 import { faker } from '@faker-js/faker';
-import AppUser from "../../src/app/application/user"
-import IUser from "../../src/app/Interfaces/IUser"
-import User  from "../../src/database/entity/User"
+import AppUser from "../../app/application/user"
+import IUser from "../../app/Interfaces/IUser"
+import User  from "../../database/entity/User"
 
 describe('testing entity user', ()=>{
 

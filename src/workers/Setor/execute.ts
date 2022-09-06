@@ -13,7 +13,7 @@ export default async (logger: Logger)=>{
     const apiNexo = new ApiNexoManager();
 
     logger.info("Enviando dados de Setor para nexo");
-    const resultNexo = await apiNexo.sendNewsSectors(newSectors)
+    const resultNexo = await apiNexo.sendNewsSectors(newSectors, logger)
 
     logger.info("DADOS DE SETOR ENVIADOS PARA O NEXO");
 
