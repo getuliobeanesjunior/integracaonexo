@@ -1,5 +1,5 @@
 import schedule from 'node-schedule';
-import turnoStart from '../app/application/workers/turno';
+import turnoStart from '../app/application/workers/Turno';
 import funcionarioStart from '../app/application/workers/Funcionario';
 import cargoStart from '../app/application/workers/Cargo';
 import empresaStart from '../app/application/workers/Empresa';
