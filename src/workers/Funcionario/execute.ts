@@ -12,4 +12,6 @@ export default async (logger: Logger)=>{
     logger.info("Enviando dados de Funcionário para nexo");
     const resultNexo = await apiNexo.sendNewsEmployees(newEmployees, logger)
     logger.info(resultNexo);
+    const updateNexo = await apiNexo.sendUpdateEmployees(newEmployees, logger)
+    logger.info(updateNexo);
 }

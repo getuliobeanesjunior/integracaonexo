@@ -99,7 +99,6 @@ export class ApiNexoManager {
         };
         let funcionarioAtual = 1;
         let success = 0;
-        let update = 0;
         let error = 0;
         for(const employee of employees){
             logger.info(`Integrando funcionário ${funcionarioAtual} de ${employees.length}`)
@@ -114,40 +113,73 @@ export class ApiNexoManager {
                 }
                 await logs.createLog(log)
                 success++;
-            }catch{
-                try{
-                    const {data} = await axios.patch(`${url}api/Funcionario(${employee.CodigoEmpresa},${employee.Codigo})`, {...employee}, {headers});
-                    const log:ILogs = {
-                        integration_type: ApiTypes.API_FUNCIONARIO,
-                        integration_success: true,
-                        sent_json: JSON.stringify({...data}),
-                        message: "UPDATE REALIZADA COM SUCESSO"
-                    }
-                    await logs.createLog(log)
-                    update++;
-
-                }catch(err){
-
-                    let message
-                    if(err.response && err.response.data){
-                        console.log(`Error no funcionário => ${JSON.stringify(err.response.data)}`)
-                        message = JSON.stringify(err.response.data)
-                    }else{
-                        message = "Erro não retornado na API"
-                    }
-                    const log:ILogs = {
-                        integration_type: ApiTypes.API_FUNCIONARIO,
-                        integration_success: false,
-                        sent_json: JSON.stringify({...employee}),
-                        message
-                    }
-        
-                    await logs.createLog(log)
-                    error++;
+            }catch(err){
+                let message
+                if(err.response && err.response.data){
+                    console.log(`Error ao entregar funcionário => ${JSON.stringify(err.response.data)}`)
+                    message = JSON.stringify(err.response.data)
+                }else{
+                    message = "Erro não retornado na API"
                 }
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_success: false,
+                    sent_json: JSON.stringify({...employee}),
+                    message
+                }
+    
+                await logs.createLog(log)
+                error++;
+                
             }
         }
-        logger.info(`Integrado ${success} funcionários com sucesso, Update ${update} funcionários com sucesso e ${error} falhas na integração.`)
+        logger.info(`Integrado ${success} funcionários com sucesso e ${error} falhas na integração.`)
+    }
+
+    public async sendUpdateEmployees( employees: Array<IEmployess>, logger: Logger){
+        await logs.deleteLogByType(ApiTypes.API_FUNCIONARIO);
+        const url:string = process.env.API_URL;
+        const token:String = await ApiNexoManager.getToken({});
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+        let funcionarioAtual = 1;
+        let success = 0;
+        let error = 0;
+        for(const employee of employees){
+            logger.info(`Integrando funcionário ${funcionarioAtual} de ${employees.length}`)
+            funcionarioAtual++;
+            try{
+                const {data} = await axios.patch(`${url}api/Funcionario('${employee.CodigoEmpresa}','${employee.Codigo}')`, {...employee}, {headers});
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_success: true,
+                    sent_json: JSON.stringify({...data}),
+                    message: "UPDATE REALIZADA COM SUCESSO"
+                }
+                await logs.createLog(log)
+                success++;
+            }catch(err){
+                let message
+                if(err.response && err.response.data){
+                    console.log(`Error no update funcionário => ${JSON.stringify(err.response.data)}`)
+                    message = JSON.stringify(err.response.data)
+                }else{
+                    message = "Erro não retornado na API"
+                }
+                const log:ILogs = {
+                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_success: false,
+                    sent_json: JSON.stringify({...employee}),
+                    message
+                }
+    
+                await logs.createLog(log)
+                error++;
+            }
+        }
+        logger.info(`Update ${success} funcionários com sucesso e ${error} falhas na integração.`)
     }
 
     public async sendNewsSectors( sectors: Array<ISector>, logger: Logger ){
