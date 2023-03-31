@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import turnoStart from "../application/workers/Turno";
+import turnoStart from "../application/workers/turno";
 import funcionarioStart from "../application/workers/Funcionario";
 import setorStart from "../application/workers/Setor";
 import empresaStart from "../application/workers/Empresa";
