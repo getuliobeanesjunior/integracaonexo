@@ -7,8 +7,8 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
 
     for(const employee of listEmployess){
         employees.push({
-            Codigo:employee["CODIGO"] ? employee["CODIGO"][0] : null,
             CodigoEmpresa:employee["CODIGOEMPRESA"] ? employee["CODIGOEMPRESA"][0] : null,
+            Codigo:employee["CODIGO"] ? employee["CODIGO"][0] : null,
             Nome:employee["NOME"] ? employee["NOME"][0] : null,
             CodigoLotacao:employee["LOTACAO"] ? employee["LOTACAO"][0] : null,
             Telefone:employee["TELEFONE1"] ? employee["TELEFONE1"][0] : null,
@@ -62,8 +62,8 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             Aposentado:false,
             SituacaoBeneficiario:null,
             CodigoRaca:null,
-            DataInicioHistorico:null,
-            DataFinalHistorico:null
+            DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? employee["DATAINICIOHISTORICO"] : null,
+            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? employee["DATAFINALHISTORICO"] : null
         })
     }
 

@@ -116,7 +116,7 @@ export class ApiNexoManager {
                 success++;
             }catch{
                 try{
-                    const {data} = await axios.patch(`${url}api/Funcionario('${employee.Codigo}','${employee.CodigoEmpresa}')`, {...employee}, {headers});
+                    const {data} = await axios.patch(`${url}api/Funcionario('${employee.CodigoEmpresa}','${employee.Codigo}')`, {...employee}, {headers});
                     const log:ILogs = {
                         integration_type: ApiTypes.API_FUNCIONARIO,
                         integration_success: true,
