@@ -25,7 +25,7 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             NumeroDeSerieDaCarteiraDeTrabalho:employee["NUMERODESERIE"] ? employee["NUMERODESERIE"][0] : null,
             Sexo:employee["SEXO"] ? employee["SEXO"][0] : null,
             EstadoCivil:employee["ESTADOCIVIL"] ? employee["ESTADOCIVIL"][0].toUpperCase() : null,
-            CodigoTurno:employee["CODIGOTURNO"] ? employee["CodigoTurno"] : null,
+            CodigoTurno: null,
             Endereco:employee["RUA"] ? employee["RUA"][0] : null,
             Numero:employee["NUMERO"] ? parseInt(employee["NUMERO"][0]) : 0,
             Bairro:employee["BAIRRO"] ? employee["BAIRRO"][0] : null,
@@ -49,21 +49,13 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             Salario:employee["SALARIO"] ? parseFloat(employee["SALARIO"][0]) : 0,
             NumerodoRegistro:employee["NUMERODOREGISTRO"] ? employee["NUMERODOREGISTRO"][0] : null,
             CPF:employee["CPF"] ? employee["CPF"][0] : null,
-            DataInicioHistoricoCargo: employee["DATAINICIOHISTORICOCARGO"] ? employee["DATAINICIOHISTORICOCARGO"] : null,
-            DataFinalHistoricoCargo: employee["DATAFINALHISTORICOCARGO"] ? employee["DATAFINALHISTORICOCARGO"] : null,
-            DataInicioHistoricoSetor: employee["DATAINICIOHISTORICOSETOR"] ? employee["DATAINICIOHISTORICOSETOR"] : null,
-            DataFinalHistoricoSetor: employee["DATAFINALHISTORICOSETOR"] ? employee["DATAFINALHISTORICOSETOR"] : null,
-            DataInicioHistoricoLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? employee["DATAINICIOHISTORICOLOTACAO"] : null,
-            DataFinalHistoricoLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? employee["DATAFINALHISTORICOLOTACAO"] : null,
-            DataInicioHistoricoTurno: employee["DATAINICIOHISTORICOTURNO"] ? employee["DATAINICIOHISTORICOTURNO"] : null,
-            DataFinalHistoricoTurno: employee["DATAFINALHISTORICOTURNO"] ? employee["DATAFINALHISTORICOTURNO"] : null,
             Cbo:null,
             FiliacaoPrevidenciaSocial:null,
             Aposentado:false,
             SituacaoBeneficiario:null,
             CodigoRaca:null,
-            DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? employee["DATAINICIOHISTORICO"] : null,
-            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? employee["DATAFINALHISTORICO"] : null
+            DataInicioHistorico: null,
+            DataFinalHistorico: null
         })
     }
 
