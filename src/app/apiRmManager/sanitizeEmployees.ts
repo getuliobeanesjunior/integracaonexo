@@ -55,7 +55,7 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             SituacaoBeneficiario:null,
             CodigoRaca:null,
             DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? employee["DATAINICIOHISTORICO"] : null,
-            DataFinalHistorico: employee["DATAFIMHISTORICO"] ? employee["DATAFIMHISTORICO"] : null,
+            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? employee["DATAFINALHISTORICO"] : null,
             DataInicioHistoricoCargo: employee["DATAINICIOHISTORICOCARGO"] ? employee["DATAINICIOHISTORICOCARGO"] : null,
             DataFinalHistoricoCargo: employee["DATAFINALHISTORICOCARGO"] ? employee["DATAFINALHISTORICOCARGO"] : null,
             DataInicioHistoricoSetor: employee["DATAINICIOHISTORICOSETOR"] ? employee["DATAINICIOHISTORICOSETOR"] : null,
