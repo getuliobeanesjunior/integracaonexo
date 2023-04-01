@@ -27,7 +27,7 @@ export default class ApiRmManager {
     }
 
     public async getNewEmployees(){
-        const codSentenca = "API.NEXO.00001";
+        const codSentenca = "API.NEXO.0010";
         const codColigada = 0;
         const codSistema = "P";
         const parameters = "";
