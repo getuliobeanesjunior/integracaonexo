@@ -47,5 +47,13 @@ export default interface IEmployess {
     SituacaoBeneficiario?:string,
     CodigoRaca?:string,
     DataInicioHistorico?:string,
-    DataFinalHistorico?:string
+    DataFinalHistorico?:string,
+    DataInicioHistoricoCargo?:string,
+    DataFinalHistoricoCargo?:string,
+    DataInicioHistoricoSetor?:string,
+    DataFinalHistoricoSetor?:string,
+    DataInicioHistoricoLotacao?:string,
+    DataFinalHistoricoLotacao?:string,
+    DataInicioHistoricoTurno?:string,
+    DataFinalHistoricoTurno?:string
  }
