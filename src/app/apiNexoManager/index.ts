@@ -137,7 +137,7 @@ export class ApiNexoManager {
     }
 
     public async sendUpdateEmployees( employees: Array<IEmployess>, logger: Logger){
-        await logs.deleteLogByType(ApiTypes.API_FUNCIONARIO);
+        await logs.deleteLogByType(ApiTypes.API_UPDATE_FUNCIONARIO);
         const url:string = process.env.API_URL;
         const token:String = await ApiNexoManager.getToken({});
         const headers = {
@@ -148,13 +148,13 @@ export class ApiNexoManager {
         let success = 0;
         let error = 0;
         for(const employee of employees){
-            logger.info(`Integrando funcionário ${funcionarioAtual} de ${employees.length}`)
+            logger.info(`Update funcionário ${funcionarioAtual} de ${employees.length}`)
             funcionarioAtual++;
             delete employee.DataNascimento
             try{
                 const {data} = await axios.patch(`${url}api/Funcionario('${employee.CodigoEmpresa}','${employee.Codigo}')`, {...employee}, {headers});
                 const log:ILogs = {
-                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_type: ApiTypes.API_UPDATE_FUNCIONARIO,
                     integration_success: true,
                     sent_json: JSON.stringify({...data}),
                     message: "UPDATE REALIZADA COM SUCESSO"
@@ -170,7 +170,7 @@ export class ApiNexoManager {
                     message = "Erro não retornado na API"
                 }
                 const log:ILogs = {
-                    integration_type: ApiTypes.API_FUNCIONARIO,
+                    integration_type: ApiTypes.API_UPDATE_FUNCIONARIO,
                     integration_success: false,
                     sent_json: JSON.stringify({...employee}),
                     message
