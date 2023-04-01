@@ -150,6 +150,7 @@ export class ApiNexoManager {
         for(const employee of employees){
             logger.info(`Integrando funcionário ${funcionarioAtual} de ${employees.length}`)
             funcionarioAtual++;
+            delete employee.DataNascimento
             try{
                 const {data} = await axios.patch(`${url}api/Funcionario('${employee.CodigoEmpresa}','${employee.Codigo}')`, {...employee}, {headers});
                 const log:ILogs = {
