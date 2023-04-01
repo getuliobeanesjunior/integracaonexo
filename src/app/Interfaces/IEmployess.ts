@@ -48,12 +48,12 @@ export default interface IEmployess {
     CodigoRaca?:string,
     DataInicioHistorico?:string,
     DataFinalHistorico?:string,
-    DataInicioHistoricoCargo?:string,
-    DataFinalHistoricoCargo?:string,
-    DataInicioHistoricoSetor?:string,
-    DataFinalHistoricoSetor?:string,
-    DataInicioHistoricoLotacao?:string,
-    DataFinalHistoricoLotacao?:string,
-    DataInicioHistoricoTurno?:string,
-    DataFinalHistoricoTurno?:string
- }
+    DataInicioCargo?:string,
+    DataFinalCargo?:string,
+    DataInicioSetor?:string,
+    DataFinalSetor?:string,
+    DataInicioLotacao?:string,
+    DataFinalLotacao?:string,
+    DataInicioTurno?:string,
+    DataFinalTurno?:string
+}

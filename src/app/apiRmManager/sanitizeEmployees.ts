@@ -56,14 +56,14 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             CodigoRaca:null,
             DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? employee["DATAINICIOHISTORICO"] : null,
             DataFinalHistorico: employee["DATAFINALHISTORICO"] ? employee["DATAFINALHISTORICO"] : null,
-            DataInicioHistoricoCargo: employee["DATAINICIOHISTORICOCARGO"] ? employee["DATAINICIOHISTORICOCARGO"] : null,
-            DataFinalHistoricoCargo: employee["DATAFINALHISTORICOCARGO"] ? employee["DATAFINALHISTORICOCARGO"] : null,
-            DataInicioHistoricoSetor: employee["DATAINICIOHISTORICOSETOR"] ? employee["DATAINICIOHISTORICOSETOR"] : null,
-            DataFinalHistoricoSetor: employee["DATAFINALHISTORICOSETOR"] ? employee["DATAFINALHISTORICOSETOR"] : null,
-            DataInicioHistoricoLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? employee["DATAINICIOHISTORICOLOTACAO"] : null,
-            DataFinalHistoricoLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? employee["DATAFINALHISTORICOLOTACAO"] : null,
-            DataInicioHistoricoTurno: employee["DATAINICIOHISTORICOTURNO"] ? employee["DATAINICIOHISTORICOTURNO"] : null,
-            DataFinalHistoricoTurno: employee["DATAFINALHISTORICOTURNO"] ? employee["DATAFINALHISTORICOTURNO"] : null
+            DataInicioCargo: employee["DATAINICIOHISTORICOCARGO"] ? employee["DATAINICIOHISTORICOCARGO"] : null,
+            DataFinalCargo: employee["DATAFINALHISTORICOCARGO"] ? employee["DATAFINALHISTORICOCARGO"] : null,
+            DataInicioSetor: employee["DATAINICIOHISTORICOSETOR"] ? employee["DATAINICIOHISTORICOSETOR"] : null,
+            DataFinalSetor: employee["DATAFINALHISTORICOSETOR"] ? employee["DATAFINALHISTORICOSETOR"] : null,
+            DataInicioLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? employee["DATAINICIOHISTORICOLOTACAO"] : null,
+            DataFinalLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? employee["DATAFINALHISTORICOLOTACAO"] : null,
+            DataInicioTurno: employee["DATAINICIOHISTORICOTURNO"] ? employee["DATAINICIOHISTORICOTURNO"] : null,
+            DataFinalTurno: employee["DATAFINALHISTORICOTURNO"] ? employee["DATAFINALHISTORICOTURNO"] : null
         })
     }
 
