@@ -54,16 +54,16 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             Aposentado:false,
             SituacaoBeneficiario:null,
             CodigoRaca:null,
-            DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? employee["DATAINICIOHISTORICO"] : null,
-            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? employee["DATAFINALHISTORICO"] : null,
-            DataInicioCargo: employee["DATAINICIOHISTORICOCARGO"] ? employee["DATAINICIOHISTORICOCARGO"] : null,
-            DataFinalCargo: employee["DATAFINALHISTORICOCARGO"] ? employee["DATAFINALHISTORICOCARGO"] : null,
-            DataInicioSetor: employee["DATAINICIOHISTORICOSETOR"] ? employee["DATAINICIOHISTORICOSETOR"] : null,
-            DataFinalSetor: employee["DATAFINALHISTORICOSETOR"] ? employee["DATAFINALHISTORICOSETOR"] : null,
-            DataInicioLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? employee["DATAINICIOHISTORICOLOTACAO"] : null,
-            DataFinalLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? employee["DATAFINALHISTORICOLOTACAO"] : null,
-            DataInicioTurno: employee["DATAINICIOHISTORICOTURNO"] ? employee["DATAINICIOHISTORICOTURNO"] : null,
-            DataFinalTurno: employee["DATAFINALHISTORICOTURNO"] ? employee["DATAFINALHISTORICOTURNO"] : null
+            DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? moment(employee["DATAINICIOHISTORICO"][0]).utc().format() : null,
+            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? moment(employee["DATAFINALHISTORICO"][0]).utc().format() : null,
+            DataInicioCargo: employee["DATAINICIOHISTORICOCARGO"] ? moment(employee["DATAINICIOHISTORICOCARGO"][0]).utc().format() : null,
+            DataFinalCargo: employee["DATAFINALHISTORICOCARGO"] ? moment(employee["DATAFINALHISTORICOCARGO"][0]).utc().format() : null,
+            DataInicioSetor: employee["DATAINICIOHISTORICOSETOR"] ? moment(employee["DATAINICIOHISTORICOSETOR"][0]).utc().format() : null,
+            DataFinalSetor: employee["DATAFINALHISTORICOSETOR"] ? moment(employee["DATAFINALHISTORICOSETOR"][0]).utc().format() : null,
+            DataInicioLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? moment(employee["DATAINICIOHISTORICOLOTACAO"][0]).utc().format() : null,
+            DataFinalLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? moment(employee["DATAFINALHISTORICOLOTACAO"][0]).utc().format() : null,
+            DataInicioTurno: employee["DATAINICIOHISTORICOTURNO"] ? moment(employee["DATAINICIOHISTORICOTURNO"][0]).utc().format() : null,
+            DataFinalTurno: employee["DATAFINALHISTORICOTURNO"] ?  moment(employee["DATAFINALHISTORICOTURNO"][0]).utc().format() : null
         })
     }
 
