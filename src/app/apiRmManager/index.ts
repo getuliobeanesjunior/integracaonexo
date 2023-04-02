@@ -1,5 +1,6 @@
 import ITurno from "../Interfaces/ITurno";
-import moment from "moment";
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
 import {parseStringPromise} from "xml2js"
 import sanitizeEmployees from "./sanitizeEmployees";
 import sanitizeSector from "./sanitizeSector";
@@ -7,13 +8,15 @@ import sanitizeCompany from "./sanitizeCompany";
 import sanitizeOffice from "./sanitizeOffice";
 var soap = require('soap')
 
+dayjs.extend(utc)
+
 export default class ApiRmManager {
 
     public async getNewShifts() : Promise<Array<ITurno>>{
 
         return [{
             "Codigo":"00001",
-            "HoraInicio":moment().utc().format(),
+            "HoraInicio":dayjs().utc().format(),
             "HoraFim":"2019-12-30T13:33:55.901Z",
             "HoraInicioAlmoco":"2019-12-30T13:33:55.901Z",
             "HoraFimAlmoco":"2019-12-30T13:33:55.901Z",
