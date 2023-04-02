@@ -54,16 +54,16 @@ export default ( listEmployess:Array<any> ): Array<IEmployess> =>{
             Aposentado:false,
             SituacaoBeneficiario:null,
             CodigoRaca:null,
-            DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? moment(employee["DATAINICIOHISTORICO"][0]).utc().format() : null,
-            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? moment(employee["DATAFINALHISTORICO"][0]).utc().format() : null,
-            DataInicioCargo: employee["DATAINICIOHISTORICOCARGO"] ? moment(employee["DATAINICIOHISTORICOCARGO"][0]).utc().format() : null,
-            DataFinalCargo: employee["DATAFINALHISTORICOCARGO"] ? moment(employee["DATAFINALHISTORICOCARGO"][0]).utc().format() : null,
-            DataInicioSetor: employee["DATAINICIOHISTORICOSETOR"] ? moment(employee["DATAINICIOHISTORICOSETOR"][0]).utc().format() : null,
-            DataFinalSetor: employee["DATAFINALHISTORICOSETOR"] ? moment(employee["DATAFINALHISTORICOSETOR"][0]).utc().format() : null,
-            DataInicioLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? moment(employee["DATAINICIOHISTORICOLOTACAO"][0]).utc().format() : null,
-            DataFinalLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? moment(employee["DATAFINALHISTORICOLOTACAO"][0]).utc().format() : null,
-            DataInicioTurno: employee["DATAINICIOHISTORICOTURNO"] ? moment(employee["DATAINICIOHISTORICOTURNO"][0]).utc().format() : null,
-            DataFinalTurno: employee["DATAFINALHISTORICOTURNO"] ?  moment(employee["DATAFINALHISTORICOTURNO"][0]).utc().format() : null
+            DataInicioHistorico: employee["DATAINICIOHISTORICO"] ? moment(employee["DATAINICIOHISTORICO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataFinalHistorico: employee["DATAFINALHISTORICO"] ? moment(employee["DATAFINALHISTORICO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataInicioCargo: employee["DATAINICIOHISTORICOCARGO"] ? moment(employee["DATAINICIOHISTORICOCARGO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataFinalCargo: employee["DATAFINALHISTORICOCARGO"] ? moment(employee["DATAFINALHISTORICOCARGO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataInicioSetor: employee["DATAINICIOHISTORICOSETOR"] ? moment(employee["DATAINICIOHISTORICOSETOR"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataFinalSetor: employee["DATAFINALHISTORICOSETOR"] ? moment(employee["DATAFINALHISTORICOSETOR"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataInicioLotacao: employee["DATAINICIOHISTORICOLOTACAO"] ? moment(employee["DATAINICIOHISTORICOLOTACAO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataFinalLotacao: employee["DATAFINALHISTORICOLOTACAO"] ? moment(employee["DATAFINALHISTORICOLOTACAO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataInicioTurno: employee["DATAINICIOHISTORICOTURNO"] ? moment(employee["DATAINICIOHISTORICOTURNO"][0], 'DD/MM/YYYY').utc(true).format() : null,
+            DataFinalTurno: employee["DATAFINALHISTORICOTURNO"] ?  moment(employee["DATAFINALHISTORICOTURNO"] [0], 'DD/MM/YYYY').utc(true).format() : null
         })
     }
 
