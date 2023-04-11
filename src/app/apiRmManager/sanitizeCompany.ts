@@ -1,5 +1,4 @@
 import ICompany from "../Interfaces/ICompany";
-import moment from "moment";
 
 export default ( listCompanies:Array<any> ): Array<ICompany> =>{
     

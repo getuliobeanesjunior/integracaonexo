@@ -22,7 +22,7 @@ export default class ApiRmManager {
             "HoraFimAlmoco":"2019-12-30T13:33:55.901Z",
             "UtilizarEscalaDeTrabalho":true,
             "Tipo":"F"
-         }]
+        }]
 
     }
 

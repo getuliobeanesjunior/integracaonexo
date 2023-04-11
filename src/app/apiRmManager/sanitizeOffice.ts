@@ -1,5 +1,4 @@
 import IOffice from "../Interfaces/IOffice";
-import moment from "moment";
 
 export default ( ListOffices:Array<any> ): Array<IOffice> =>{
     
